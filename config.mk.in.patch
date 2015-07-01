@@ -1,0 +1,4 @@
+12c12
+< MOSQUITTO_SRC =
+---
+> MOSQUITTO_SRC = /usr/local/src/mosquitto-1.4.2

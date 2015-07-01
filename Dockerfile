@@ -21,10 +21,13 @@ WORKDIR /usr/local/src/owntracks
 RUN ./mosquitto-setup.sh
 # build mosquitto authentication plugin
 WORKDIR /usr/local/src/
+# fetch auth-plug sources
 RUN git clone https://github.com/jpmens/mosquitto-auth-plug.git
+# fetch config patches
+RUN git clone https://github.com/maxheadroom/Mosquitto.git
 WORKDIR /usr/local/src/mosquitto-auth-plug
 RUN cp config.mk.in config.mk
-RUN echo "12c12^J< MOSQUITTO_SRC =^J---^J> MOSQUITTO_SRC = /usr/local/src/mosquitto-1.4.2" | patch config.mk.in config.mk
+RUN cat ../Mosquitto/config.mk.in.patch | patch config.mk.in config.mk
 RUN make && cp auth-plug.so /usr/local/lib
 RUN ldconf
 # create runtime user for mosquitto
