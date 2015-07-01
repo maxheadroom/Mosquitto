@@ -27,9 +27,9 @@ RUN git clone https://github.com/jpmens/mosquitto-auth-plug.git
 RUN git clone https://github.com/maxheadroom/Mosquitto.git
 WORKDIR /usr/local/src/mosquitto-auth-plug
 RUN cp config.mk.in config.mk
-RUN cat ../Mosquitto/config.mk.in.patch | patch config.mk.in config.mk
+RUN patch -i /usr/local/src/Mosquitto/config.mk.in.patch -o config.mk config.mk.in
 RUN make && cp auth-plug.so /usr/local/lib
-RUN ldconf
+RUN ldconfig
 # create runtime user for mosquitto
 RUN adduser --system --disabled-password --disabled-login mosquitto
 EXPOSE 1883
