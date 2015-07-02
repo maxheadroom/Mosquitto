@@ -1,3 +1,7 @@
+7c7
+< BACKEND_LDAP ?= no
+---
+> BACKEND_LDAP ?= yes
 12c12
 < MOSQUITTO_SRC =
 ---

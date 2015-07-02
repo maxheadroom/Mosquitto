@@ -1,4 +1,4 @@
-FROM ubuntu:latest
+FROM debian:jessie
 
 MAINTAINER Falko Zurell <falko.zurell@gmail.com>
 
@@ -15,6 +15,8 @@ RUN apt-get install wget \
   libc-ares-dev \
   mosquitto-clients \
   uuid-dev \
+  vim \
+  libldap2-dev \
   libmysqlclient-dev -y
 RUN mkdir -p /usr/local/src
 WORKDIR /usr/local/src
